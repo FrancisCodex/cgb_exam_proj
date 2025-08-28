@@ -55,15 +55,22 @@ function App() {
   };
 
   // Update user
-  const handleUpdate = async () => {
-    const res = await fetch(`http://127.0.0.1:8000/api/users/${userData.id}`, {
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch(`http://127.0.0.1:8000/api/users/update/${userData.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userData),
+      body: JSON.stringify({
+        name: userData.name,
+        contact: userData.contact,
+        address: userData.address
+      }),
     });
 
     if (res.ok) {
       await fetchData();
+      setIsModalOpen(false); // close modal after success
     }
   };
 
