@@ -12,13 +12,6 @@ function App() {
     address: '',
   });
 
-  const [updateUserData, setUpdateUserData] = useState({
-    id: null,
-    name: '',
-    contact: '',
-    address: '',
-  })
-
   // Function to Submit User Details (Create)
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent page reload
@@ -69,7 +62,7 @@ function App() {
     });
 
     if (res.ok) {
-      await fetchData();
+      await fetchData(); //fetch data
       setIsModalOpen(false); // close modal after success
     }
   };
@@ -134,13 +127,14 @@ function App() {
         <br />
 
         {/* Table */}
+        <div className='table_container'>
         <table className="data_table">
           <thead className="table_head">
             <tr>
-              <td>Name</td>
-              <td>Contact</td>
-              <td>Address</td>
-              <td>Actions</td>
+              <th scope="col">Name</th>
+              <th scope="col">Contact</th>
+              <th scope="col">Address</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody className="table_body">
@@ -157,6 +151,8 @@ function App() {
             ))}
           </tbody>
         </table>
+        </div>
+
       </header>
 
       <Modal show={isModalOpen} onClose={closeModal} title="Update Data">
