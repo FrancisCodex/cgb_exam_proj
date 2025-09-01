@@ -85,21 +85,13 @@ class UserController extends Controller
         $userDetail = UserDetails::findOrFail($id);
 
         $validated = $request->validate([
-            'name' => 'string|nullable',
-            'contact' => 'string|nullable',
-            'address' => 'string|nullable',
+            'name'    => 'sometimes|string',
+            'contact' => 'sometimes|string',
+            'address' => 'sometimes|string',
         ]);
 
-    
-        $updateData = array_filter($validated, function($value) {
-            return !is_null($value);
-        });
-
-        if (!empty($updateData)) {
-            $userDetail->update($updateData);
-        }
-
-        $userDetail->refresh();
+        $userDetail->update($validated);
+        
 
         return response()->json($userDetail, 200);
     }

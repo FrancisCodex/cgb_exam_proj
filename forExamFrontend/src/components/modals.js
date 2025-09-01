@@ -15,9 +15,6 @@ const Modal = ({ show, onClose, children, title }) => {
         <div className="modal-body">
           {children}
         </div>
-        <div className="modal-footer">
-          {/* Optional: Add buttons for actions like "Confirm", "Cancel" */}
-        </div>
       </div>
     </div>
   );
